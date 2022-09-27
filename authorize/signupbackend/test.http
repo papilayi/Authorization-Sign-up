@@ -1,0 +1,13 @@
+POST http://localhost:4000/app/signup
+Content-Type: application/json
+
+{
+    "username":"papilayi",
+    "firstName":"Oni",
+    "lastName":"Abayomi",
+    "email":"abiyo4reel@gmail.com",
+    "password":"Welcome@007",
+    "phoneNumber":"08180984375",
+    "address":"flat4 blk11 LSDPC estate Odonla Odogunyan Ikorodu Lagos",
+    "gender":"male"
+}

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const signUpTemplate = new mongoose.Schema({
-    userName:{
+    username:{
         type:String,
         required:true
     },
@@ -22,7 +22,7 @@ const signUpTemplate = new mongoose.Schema({
         required:true
     },
     phoneNumber:{
-        type:Number,
+        type:String,
         required:true
     },
     address:{
@@ -31,7 +31,7 @@ const signUpTemplate = new mongoose.Schema({
     },
     gender:{
         type:String,
-        gender: ['Male', 'Female']
+        required:true
     },
     date:{
         type:Date,
@@ -39,4 +39,4 @@ const signUpTemplate = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('mytable', signUpTemplate)
+module.exports = mongoose.model('signuptemplate', signUpTemplate)
