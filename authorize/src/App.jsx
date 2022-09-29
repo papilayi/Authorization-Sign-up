@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
 import axios from 'axios'
 
+// Using a class based component
 class App extends Component {
+    // Building state using constructor
     constructor(){
         super()
         this.state = {
@@ -15,6 +17,8 @@ class App extends Component {
             "address":'',
             "gender":''
         }
+
+        // Binding methods created to the constructor
         this.changeUsername = this.changeUsername.bind(this)
         this.changeFirstName = this.changeFirstName.bind(this)
         this.changeLastName = this.changeLastName.bind(this)
@@ -26,7 +30,7 @@ class App extends Component {
         this.onSubmit = this.onSubmit.bind(this)
         
     }
-
+    // Creating methods
     changeUsername(event){
         this.setState({
             username:event.target.value
@@ -82,8 +86,12 @@ class App extends Component {
             gender: this.state.gender
         }
 
+        // Using axios to link the front-end and back-end
         axios.post('http://localhost:4000/app/signup', registered)
         .then(response => console.log(response.data))
+
+        // Incase we need to direct elsewhere
+        //window.location = '/'
 
         this.setState({
             username:'',
