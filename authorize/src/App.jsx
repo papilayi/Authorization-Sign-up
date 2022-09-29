@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
+import axios from 'axios'
 
 class App extends Component {
     constructor(){
@@ -16,12 +17,14 @@ class App extends Component {
         }
         this.changeUsername = this.changeUsername.bind(this)
         this.changeFirstName = this.changeFirstName.bind(this)
-        // this.onChangeLastName = this.changeLastName.bind(this)
-        // this.onChangeEmail = this.changeEmail.bind(this)
-        // this.onChangePassword = this.changePassword.bind(this)
-        // this.changePhoneNumber = this.changePhoneNumber.bind(this)
-        // this.onChangeAddress = this.changeAddress.bind(this)
-        // this.onChangeGender = this.changeGender.bind(this)
+        this.changeLastName = this.changeLastName.bind(this)
+        this.changeEmail = this.changeEmail.bind(this)
+        this.changePassword = this.changePassword.bind(this)
+        this.changePhoneNumber = this.changePhoneNumber.bind(this)
+        this.changeAddress = this.changeAddress.bind(this)
+        this.changeGender = this.changeGender.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
+        
     }
 
     changeUsername(event){
@@ -65,12 +68,41 @@ class App extends Component {
         })
     }
 
+    onSubmit(event){
+        event.preventDefault()
+
+        const registered = {
+            username: this.state.username,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+            password: this.state.password,
+            phoneNumber: this.state.phoneNumber,
+            address: this.state.address,
+            gender: this.state.gender
+        }
+
+        axios.post('http://localhost:4000/app/signup', registered)
+        .then(response => console.log(response.data))
+
+        this.setState({
+            username:'',
+            firstName:'',
+            lastName:'',
+            email:'',
+            password:'',
+            phoneNumber:'',
+            address:'',
+            gender:''
+        })
+    }
+
     render() {
         return (
             <div>
                 <div className="container">
                     <div className="form-div">
-                        <form>
+                        <form onSubmit={this.onSubmit}>
                             <input type='text'
                             placeholder='Username'
                             onChange={this.changeUsername}
@@ -106,7 +138,7 @@ class App extends Component {
                             className='form-control form-group'
                             />
 
-                            <input type='text'
+                            <input type='tel'
                             placeholder='Phone Number'
                             onChange={this.changePhoneNumber}
                             value={this.state.phoneNumber}
